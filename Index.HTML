@@ -1,0 +1,3389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>REFILL+ | Drink. Refill. Repeat.</title>
+
+<style>
+
+/* =========================
+   ОСНОВНЫЕ НАСТРОЙКИ
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f8f6;
+    color: #10251b;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================
+   НАВИГАЦИЯ
+========================= */
+
+.navbar {
+    height: 80px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #e5ebe7;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #31b968;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar nav a {
+    color: #65736b;
+    font-size: 13px;
+    transition: .3s;
+}
+
+.navbar nav a:hover {
+    color: #31b968;
+}
+
+.nav-button {
+    padding: 12px 23px;
+    background: #10251b;
+    color: white;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.nav-button:hover {
+    background: #31b968;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 700px;
+    padding: 80px 8%;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    background:
+        radial-gradient(
+            circle at 80% 40%,
+            #d8f5e2,
+            transparent 40%
+        );
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 9px 16px;
+    margin-bottom: 25px;
+    background: #e8f7ed;
+    border: 1px solid #c7e4d0;
+    border-radius: 30px;
+    color: #25874e;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.hero h1 {
+    font-size: clamp(45px,6vw,78px);
+    line-height: 1;
+    letter-spacing: -4px;
+}
+
+.hero h1 span {
+    display: block;
+    color: #31b968;
+}
+
+.hero p {
+    max-width: 550px;
+    margin: 30px 0;
+    color: #69766f;
+    font-size: 18px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.primary-button,
+.secondary-button {
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.primary-button {
+    background: #10251b;
+    color: white;
+}
+
+.primary-button:hover {
+    background: #31b968;
+}
+
+.secondary-button {
+    background: white;
+    border: 1px solid #d6dfd9;
+}
+
+.secondary-button:hover {
+    border-color: #31b968;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 45px;
+}
+
+.hero-stats div {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-stats strong {
+    font-size: 30px;
+}
+
+.hero-stats small {
+    color: #7a867f;
+}
+
+
+/* =========================
+   БУТЫЛКА HERO
+========================= */
+
+.bottle-area {
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.glow {
+    width: 380px;
+    height: 380px;
+    position: absolute;
+    background: #bdeecb;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: .8;
+}
+
+.bottle {
+    width: 220px;
+    height: 430px;
+    position: relative;
+    z-index: 2;
+    animation: floatBottle 4s ease-in-out infinite;
+    filter: drop-shadow(20px 25px 25px rgba(0,0,0,.2));
+}
+
+.bottle-cap {
+    width: 105px;
+    height: 55px;
+    margin: auto;
+    border-radius: 18px 18px 8px 8px;
+    background: #182c22;
+}
+
+.bottle-body {
+    height: 370px;
+    border-radius: 35px 35px 45px 45px;
+    background:
+        linear-gradient(
+            100deg,
+            #aeb8b1,
+            #ffffff,
+            #9ba69f
+        );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow:
+        inset -15px 0 25px rgba(0,0,0,.08),
+        inset 10px 0 15px rgba(255,255,255,.8);
+}
+
+.bottle-logo {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.bottle-logo span {
+    color: #31b968;
+}
+
+.bottle-text {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 3px;
+    line-height: 1.8;
+}
+
+@keyframes floatBottle {
+
+    0% {
+        transform: translateY(0) rotate(5deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(3deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(5deg);
+    }
+
+}
+
+
+/* =========================
+   ОБЩИЕ СЕКЦИИ
+========================= */
+
+.problem,
+.how,
+.drinks,
+.bottle-sizes,
+.plans,
+.balance,
+.contact {
+    padding: 110px 8%;
+}
+
+.section-title {
+    max-width: 700px;
+    margin-bottom: 60px;
+}
+
+.section-title.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.section-title span {
+    color: #31b968;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.section-title h2 {
+    margin: 15px 0;
+    font-size: clamp(35px,4vw,55px);
+    line-height: 1.1;
+    letter-spacing: -2px;
+}
+
+.section-title p {
+    color: #6c7971;
+}
+
+
+/* =========================
+   ЭКОЛОГИЯ
+========================= */
+
+.plastic-problem {
+    padding: 110px 8%;
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            #dff5e6,
+            transparent 40%
+        ),
+        #f0f6f2;
+}
+
+.plastic-content {
+    max-width: 1150px;
+    margin: auto;
+}
+
+.plastic-label {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 9px 16px;
+    border-radius: 30px;
+    background: #e0f4e7;
+    color: #25874e;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.plastic-content h2 {
+    max-width: 700px;
+    margin-bottom: 20px;
+    font-size: clamp(40px,5vw,65px);
+    line-height: 1.05;
+    letter-spacing: -3px;
+}
+
+.plastic-content h2 span {
+    color: #31b968;
+}
+
+.plastic-content > p {
+    max-width: 650px;
+    margin-bottom: 55px;
+    color: #68766e;
+    font-size: 18px;
+}
+
+.plastic-stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+    margin-bottom: 45px;
+}
+
+.plastic-stat {
+    padding: 28px 22px;
+    background: white;
+    border: 1px solid #dce7df;
+    border-radius: 22px;
+    transition: .3s;
+}
+
+.plastic-stat:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.07);
+}
+
+.plastic-stat strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 28px;
+}
+
+.plastic-stat span {
+    color: #7b877f;
+    font-size: 13px;
+}
+
+.plastic-solution {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 32px;
+    background: #10251b;
+    color: white;
+    border-radius: 28px;
+}
+
+.solution-icon {
+    min-width: 65px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px;
+    background: #1d4a32;
+    font-size: 30px;
+}
+
+.plastic-solution h3 {
+    margin-bottom: 8px;
+    font-size: 22px;
+}
+
+.plastic-solution p {
+    max-width: 800px;
+    color: #afc1b5;
+    font-size: 14px;
+}
+
+
+/* =========================
+   КАРТОЧКИ ПРОБЛЕМЫ
+========================= */
+
+.problem-cards {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.problem-card {
+    padding: 35px;
+    background: white;
+    border: 1px solid #e2e9e4;
+    border-radius: 25px;
+    transition: .3s;
+}
+
+.problem-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.08);
+}
+
+.problem-card.highlight {
+    background: #10251b;
+    color: white;
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 25px;
+}
+
+.problem-card h3 {
+    margin-bottom: 12px;
+}
+
+.problem-card p {
+    color: #718078;
+}
+
+.highlight p {
+    color: #b8c8be;
+}
+
+
+/* =========================
+   КАК ЭТО РАБОТАЕТ
+========================= */
+
+.how {
+    background: #10251b;
+    color: white;
+}
+
+.steps {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.step {
+    flex: 1;
+    padding: 30px;
+    text-align: center;
+}
+
+.step-number {
+    margin-bottom: 20px;
+    color: #42c77a;
+    font-weight: 800;
+}
+
+.step h3 {
+    margin-bottom: 12px;
+}
+
+.step p {
+    color: #aabcb0;
+}
+
+.line {
+    width: 80px;
+    height: 1px;
+    background: #466153;
+}
+
+
+/* =========================
+   НАПИТКИ
+========================= */
+
+.drink-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.drink-card {
+    min-height: 210px;
+    padding: 35px;
+    background: white;
+    border: 1px solid #e2e8e3;
+    border-radius: 25px;
+    transition: .3s;
+}
+
+.drink-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.08);
+}
+
+.drink-symbol {
+    font-size: 40px;
+    margin-bottom: 25px;
+}
+
+.drink-card h3 {
+    margin-bottom: 8px;
+}
+
+.drink-card p {
+    color: #758179;
+    font-size: 14px;
+}
+
+.future {
+    background: #e5f6eb;
+}
+
+
+/* =========================
+   РАЗМЕРЫ БУТЫЛОК
+========================= */
+
+.bottle-sizes {
+    background: white;
+}
+
+.size-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.size-card {
+    padding: 40px 30px;
+    background: #f7faf8;
+    border: 1px solid #dfe8e2;
+    border-radius: 28px;
+    text-align: center;
+    transition: .3s;
+}
+
+.size-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.08);
+}
+
+.size-card.featured {
+    background: #10251b;
+    color: white;
+    border-color: #10251b;
+}
+
+.size-bottle {
+    width: 70px;
+    margin: 0 auto 25px;
+}
+
+.size-bottle-body {
+    width: 70px;
+    border-radius: 14px 14px 20px 20px;
+    background:
+        linear-gradient(
+            100deg,
+            #9ea9a2,
+            #ffffff,
+            #9ca69f
+        );
+}
+
+.size-300 {
+    height: 100px;
+}
+
+.size-500 {
+    height: 140px;
+}
+
+.size-700 {
+    height: 175px;
+}
+
+.size-card h3 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.size-card p {
+    color: #718078;
+    font-size: 14px;
+}
+
+.featured p {
+    color: #b8c8be;
+}
+
+.size-label {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    background: #e4f6ea;
+    color: #25874e;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.featured .size-label {
+    background: #24583c;
+    color: #5de08d;
+}
+
+
+/* =========================
+   ДИЗАЙН БУТЫЛКИ
+========================= */
+
+.bottle-design {
+    padding: 120px 8%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background: white;
+}
+
+.design-label {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 8px 15px;
+    border-radius: 30px;
+    background: #e5f7eb;
+    color: #25874e;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.bottle-design-text h2 {
+    max-width: 600px;
+    margin-bottom: 22px;
+    font-size: clamp(40px,5vw,65px);
+    line-height: 1.05;
+    letter-spacing: -3px;
+}
+
+.bottle-design-text h2 span {
+    color: #31b968;
+}
+
+.bottle-design-text > p {
+    max-width: 570px;
+    margin-bottom: 40px;
+    color: #6d7972;
+    font-size: 17px;
+}
+
+.design-features {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.design-feature {
+    display: flex;
+    gap: 18px;
+    padding: 20px;
+    border: 1px solid #e1e9e4;
+    border-radius: 18px;
+    background: #f8faf9;
+    transition: .3s;
+}
+
+.design-feature:hover {
+    transform: translateX(6px);
+    border-color: #31b968;
+    background: #f2faf5;
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+    background: #e2f6e9;
+    font-size: 22px;
+}
+
+.design-feature h3 {
+    margin-bottom: 4px;
+    font-size: 16px;
+}
+
+.design-feature p {
+    color: #748078;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.bottle-design-image {
+    min-height: 650px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 35px;
+    background: #f1f7f3;
+}
+
+.image-background {
+    position: absolute;
+    width: 430px;
+    height: 430px;
+    border-radius: 50%;
+    background: #d4f0dd;
+    filter: blur(5px);
+}
+
+.bottle-design-image img {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 650px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 25px 30px rgba(0,0,0,.15));
+    transition: .4s;
+}
+
+.bottle-design-image:hover img {
+    transform: scale(1.03);
+}
+
+
+/* =========================
+   ТАРИФЫ
+========================= */
+
+.plans {
+    background: #edf3ef;
+}
+
+.pricing {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 18px;
+}
+
+.price-card {
+    padding: 35px 30px;
+    background: white;
+    border: 1px solid #dfe7e1;
+    border-radius: 25px;
+    position: relative;
+    transition: .3s;
+}
+
+.price-card:hover {
+    transform: translateY(-7px);
+}
+
+.price-card.popular {
+    border: 2px solid #31b968;
+    transform: scale(1.03);
+}
+
+.price-card.popular:hover {
+    transform: scale(1.03) translateY(-7px);
+}
+
+.popular-label {
+    position: absolute;
+    top: -14px;
+    right: 20px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #31b968;
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.price-card h3 {
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.price {
+    margin: 20px 0 25px;
+    font-size: 36px;
+    font-weight: 800;
+}
+
+.price small {
+    font-size: 12px;
+    color: #7b877f;
+}
+
+.liters {
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    background: #eaf7ee;
+    color: #25874e;
+    text-align: center;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.price-card ul {
+    list-style: none;
+}
+
+.price-card li {
+    margin: 13px 0;
+    color: #65736b;
+    font-size: 14px;
+}
+
+.price-card button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 30px;
+    background: #10251b;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.price-card button:hover {
+    background: #31b968;
+}
+
+
+/* =========================
+   КАЛЬКУЛЯТОР
+========================= */
+
+.calculator {
+    padding: 110px 8%;
+    background: #f5f8f6;
+}
+
+.calculator-box {
+    max-width: 1050px;
+    margin: auto;
+    padding: 45px;
+    background: white;
+    border-radius: 30px;
+    border: 1px solid #dce7df;
+    box-shadow: 0 20px 50px rgba(0,0,0,.07);
+}
+
+.calculator-input {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.calculator-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.calculator-field label {
+    color: #5f6d65;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.calculator-field input {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #d8e2db;
+    border-radius: 14px;
+    background: #f8faf9;
+    font-size: 18px;
+    font-weight: 700;
+    outline: none;
+}
+
+.calculator-field input:focus {
+    border-color: #31b968;
+    background: white;
+}
+
+.calculator-result {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+}
+
+.result-card {
+    padding: 25px;
+    border-radius: 20px;
+    background: #f5f8f6;
+    border: 1px solid #e0e8e2;
+}
+
+.result-card span {
+    display: block;
+    margin-bottom: 12px;
+    color: #69766e;
+    font-size: 13px;
+}
+
+.result-card strong {
+    display: block;
+    font-size: 30px;
+    color: #10251b;
+}
+
+.result-card small {
+    color: #7c8881;
+    font-size: 12px;
+}
+
+.result-card.main-result {
+    background: #10251b;
+    border-color: #10251b;
+}
+
+.result-card.main-result span {
+    color: #b7c8bd;
+}
+
+.result-card.main-result strong {
+    color: #42c77a;
+    font-size: 34px;
+}
+
+.calculator-message {
+    margin-top: 25px;
+    padding: 20px 25px;
+    border-radius: 17px;
+    background: #e5f7eb;
+    color: #237a45;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   БАЛАНС
+========================= */
+
+.balance {
+    background: white;
+}
+
+.balance-box {
+    max-width: 950px;
+    margin: auto;
+    padding: 40px;
+    background: #10251b;
+    color: white;
+    border-radius: 30px;
+    box-shadow: 0 25px 60px rgba(0,0,0,.12);
+}
+
+.balance-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.balance-top h3 {
+    font-size: 24px;
+}
+
+.balance-top span {
+    color: #9eafa5;
+    font-size: 14px;
+}
+
+.balance-number {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.balance-number strong {
+    font-size: 52px;
+    color: #42c77a;
+}
+
+.balance-number span {
+    color: #aabcb0;
+}
+
+.progress {
+    width: 100%;
+    height: 14px;
+    overflow: hidden;
+    background: #31463a;
+    border-radius: 20px;
+}
+
+.progress-bar {
+    width: 84%;
+    height: 100%;
+    background: #42c77a;
+    border-radius: 20px;
+}
+
+.balance-info {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: #aabcb0;
+    font-size: 14px;
+}
+
+.extra-liters {
+    margin-top: 30px;
+    padding: 22px;
+    background: #193428;
+    border-radius: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.extra-liters strong {
+    color: #42c77a;
+}
+
+.extra-button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 20px;
+    background: #42c77a;
+    color: #10251b;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+
+/* =========================
+   ТОЧКИ
+========================= */
+
+.locations {
+    padding: 110px 8%;
+    background: #f5f8f6;
+}
+
+.locations-container {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 25px;
+}
+
+.location-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.location-card {
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: white;
+    border: 1px solid #dfe8e2;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.location-card:hover {
+    transform: translateX(5px);
+    border-color: #31b968;
+}
+
+.location-card.active {
+    border: 2px solid #31b968;
+    background: #f0faf3;
+}
+
+.location-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    background: #e3f6e9;
+    font-size: 22px;
+}
+
+.location-card h3 {
+    margin-bottom: 3px;
+    font-size: 16px;
+}
+
+.location-card p {
+    margin-bottom: 3px;
+    color: #69776f;
+    font-size: 13px;
+}
+
+.location-card span {
+    color: #31b968;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   КАРТА
+========================= */
+
+.map {
+    min-height: 520px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    background: #dfece2;
+    box-shadow: 0 20px 45px rgba(0,0,0,.08);
+}
+
+.map-background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            35deg,
+            transparent 46%,
+            #ffffff 47%,
+            #ffffff 49%,
+            transparent 50%
+        ),
+        linear-gradient(
+            125deg,
+            transparent 44%,
+            #ffffff 45%,
+            #ffffff 47%,
+            transparent 48%
+        ),
+        #dce9df;
+}
+
+.map-road {
+    position: absolute;
+    height: 18px;
+    background: #ffffff;
+    border-radius: 20px;
+    transform: rotate(-20deg);
+}
+
+.road-1 {
+    width: 700px;
+    top: 130px;
+    left: -100px;
+}
+
+.road-2 {
+    width: 650px;
+    top: 350px;
+    left: -80px;
+    transform: rotate(18deg);
+}
+
+.road-3 {
+    width: 500px;
+    top: 40px;
+    left: 250px;
+    transform: rotate(70deg);
+}
+
+.map-water {
+    position: absolute;
+    width: 220px;
+    height: 500px;
+    right: -70px;
+    top: 100px;
+    background: #c4e3ec;
+    border-radius: 50%;
+    transform: rotate(20deg);
+}
+
+.map-pin {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #31b968;
+    color: white;
+    border: 5px solid white;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 8px 20px rgba(0,0,0,.2);
+    z-index: 5;
+}
+
+.map-pin span {
+    transform: rotate(45deg);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.pin-1 {
+    top: 34%;
+    left: 28%;
+}
+
+.pin-2 {
+    top: 55%;
+    left: 55%;
+}
+
+.pin-3 {
+    top: 25%;
+    right: 22%;
+}
+
+.pin-4 {
+    bottom: 18%;
+    left: 38%;
+}
+
+.map-label {
+    position: absolute;
+    padding: 7px 12px;
+    background: white;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #10251b;
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    z-index: 4;
+}
+
+.label-1 {
+    top: 42%;
+    left: 20%;
+}
+
+.label-2 {
+    top: 64%;
+    left: 48%;
+}
+
+.label-3 {
+    top: 32%;
+    right: 10%;
+}
+
+.label-4 {
+    bottom: 10%;
+    left: 28%;
+}
+
+.map-top {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 10;
+    padding: 15px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,.93);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.map-top strong {
+    font-size: 16px;
+}
+
+.map-top span {
+    color: #31b968;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta {
+    padding: 120px 8%;
+    text-align: center;
+    background:
+        radial-gradient(
+            circle at center,
+            #1e4b34,
+            #10251b
+        );
+    color: white;
+}
+
+.cta span {
+    color: #42c77a;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.cta h2 {
+    max-width: 750px;
+    margin: 20px auto;
+    font-size: clamp(40px,6vw,70px);
+    line-height: 1;
+    letter-spacing: -3px;
+}
+
+.cta p {
+    color: #b4c6ba;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 27px;
+    border-radius: 30px;
+    background: #42c77a;
+    color: #10251b;
+    font-weight: 800;
+}
+
+
+/* =========================
+   КОНТАКТЫ
+========================= */
+
+.contact {
+    background: white;
+}
+
+.contact-container {
+    max-width: 1050px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 70px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    background: #e8f7ed;
+    font-size: 22px;
+}
+
+.contact-item h3 {
+    font-size: 16px;
+}
+
+.contact-item p {
+    color: #78847d;
+    font-size: 14px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 16px 18px;
+    border: 1px solid #dce5df;
+    border-radius: 12px;
+    background: #f8faf9;
+    font-family: inherit;
+    outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #31b968;
+    background: white;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form button {
+    padding: 16px;
+    border: none;
+    border-radius: 30px;
+    background: #10251b;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.contact-form button:hover {
+    background: #31b968;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 35px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #09170f;
+    color: white;
+}
+
+footer p {
+    color: #819187;
+    font-size: 13px;
+}
+
+
+/* =========================
+   МОБИЛЬНАЯ ВЕРСИЯ
+========================= */
+
+@media(max-width:1000px) {
+
+    .pricing {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:900px) {
+
+    .navbar nav {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-content {
+        margin: auto;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .problem-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .drink-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .size-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        flex-direction: column;
+    }
+
+    .line {
+        width: 1px;
+        height: 50px;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .price-card.popular {
+        transform: none;
+    }
+
+    .plastic-stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .locations-container {
+        grid-template-columns: 1fr;
+    }
+
+    .map {
+        min-height: 450px;
+    }
+
+    .calculator-input {
+        grid-template-columns: 1fr;
+    }
+
+    .calculator-result {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .bottle-design {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        padding: 90px 6%;
+    }
+
+    .bottle-design-image {
+        min-height: 500px;
+    }
+
+}
+
+@media(max-width:600px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .nav-button {
+        padding: 10px 15px;
+    }
+
+    .hero {
+        padding: 60px 5%;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+        letter-spacing: -2px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-stats {
+        gap: 20px;
+    }
+
+    .bottle-area {
+        height: 450px;
+    }
+
+    .bottle {
+        transform: scale(.85);
+    }
+
+    .problem,
+    .how,
+    .drinks,
+    .bottle-sizes,
+    .plans,
+    .balance,
+    .contact {
+        padding: 80px 5%;
+    }
+
+    .plastic-problem,
+    .calculator,
+    .locations {
+        padding: 80px 5%;
+    }
+
+    .plastic-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .plastic-solution {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px;
+    }
+
+    .drink-grid,
+    .pricing {
+        grid-template-columns: 1fr;
+    }
+
+    .balance-box,
+    .calculator-box {
+        padding: 25px;
+    }
+
+    .balance-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .extra-liters {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .calculator-result {
+        grid-template-columns: 1fr;
+    }
+
+    .map {
+        min-height: 400px;
+    }
+
+    .map-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+    }
+
+    .bottle-design {
+        padding: 75px 5%;
+    }
+
+    .bottle-design-image {
+        min-height: 420px;
+    }
+
+    .design-feature {
+        padding: 16px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     НАВИГАЦИЯ
+========================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        REFILL<span>+</span>
+    </div>
+
+    <nav>
+
+        <a href="#plastic">Экология</a>
+        <a href="#how">Как работает</a>
+        <a href="#bottle-design">Бутылка</a>
+        <a href="#drinks">Напитки</a>
+        <a href="#bottle-sizes">Размеры</a>
+        <a href="#plans">Тарифы</a>
+        <a href="#calculator">Экономия</a>
+        <a href="#locations">Точки</a>
+
+    </nav>
+
+    <a href="#plans" class="nav-button">
+        Начать
+    </a>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================
+     ГЛАВНЫЙ ЭКРАН
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            ♻️ Меньше пластика. Больше возможностей.
+        </div>
+
+        <h1>
+
+            Твой любимый напиток.
+
+            <span>
+                Без одноразовой бутылки.
+            </span>
+
+        </h1>
+
+        <p>
+            Получи многоразовую металлическую бутылку
+            и наполняй её снова и снова в сети REFILL+.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#plans" class="primary-button">
+                Получить REFILL+
+            </a>
+
+            <a href="#how" class="secondary-button">
+                Как это работает →
+            </a>
+
+        </div>
+
+        <div class="hero-stats">
+
+            <div>
+                <strong>1</strong>
+                <small>многоразовая бутылка</small>
+            </div>
+
+            <div>
+                <strong>∞</strong>
+                <small>наполнений</small>
+            </div>
+
+            <div>
+                <strong>0</strong>
+                <small>одноразовых бутылок</small>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="bottle-area">
+
+        <div class="glow"></div>
+
+        <div class="bottle">
+
+            <div class="bottle-cap"></div>
+
+            <div class="bottle-body">
+
+                <div class="bottle-logo">
+                    REFILL<span>+</span>
+                </div>
+
+                <div class="bottle-text">
+                    DRINK<br>
+                    REFILL<br>
+                    REPEAT
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ЭКОЛОГИЯ
+========================= -->
+
+<section class="plastic-problem" id="plastic">
+
+    <div class="plastic-content">
+
+        <div class="plastic-label">
+            🌍 ГЛОБАЛЬНАЯ ПРОБЛЕМА
+        </div>
+
+        <h2>
+            Пластика становится
+            <span>слишком много.</span>
+        </h2>
+
+        <p>
+            По оценке UNEP, в мире ежегодно образуется
+            около 400 миллионов тонн пластиковых отходов.
+        </p>
+
+        <div class="plastic-stats">
+
+            <div class="plastic-stat">
+                <strong>400 млн</strong>
+                <span>тонн в год</span>
+            </div>
+
+            <div class="plastic-stat">
+                <strong>≈33,3 млн</strong>
+                <span>тонн в месяц</span>
+            </div>
+
+            <div class="plastic-stat">
+                <strong>≈1,1 млн</strong>
+                <span>тонн в день</span>
+            </div>
+
+            <div class="plastic-stat">
+                <strong>≈13 тонн</strong>
+                <span>каждую секунду</span>
+            </div>
+
+        </div>
+
+        <div class="plastic-solution">
+
+            <div class="solution-icon">
+                ♻️
+            </div>
+
+            <div>
+
+                <h3>
+                    А что, если одну бутылку
+                    использовать снова и снова?
+                </h3>
+
+                <p>
+                    REFILL+ создаёт систему, где вместо
+                    покупки новой одноразовой бутылки человек
+                    использует одну многоразовую бутылку
+                    и наполняет её в специальных точках.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ПРОБЛЕМА
+========================= -->
+
+<section class="problem">
+
+    <div class="section-title">
+
+        <span>ПРОБЛЕМА</span>
+
+        <h2>
+            Зачем каждый раз покупать
+            новую пластиковую бутылку?
+        </h2>
+
+        <p>
+            REFILL+ предлагает другой способ:
+            одна многоразовая металлическая бутылка
+            вместо множества одноразовых упаковок.
+        </p>
+
+    </div>
+
+
+    <div class="problem-cards">
+
+        <div class="problem-card">
+
+            <div class="icon">🧴</div>
+
+            <h3>
+                Одноразовый пластик
+            </h3>
+
+            <p>
+                Каждый новый напиток часто означает
+                новую упаковку.
+            </p>
+
+        </div>
+
+
+        <div class="problem-card highlight">
+
+            <div class="icon">♻️</div>
+
+            <h3>
+                Многоразовое решение
+            </h3>
+
+            <p>
+                Одна прочная металлическая бутылка
+                используется снова и снова.
+            </p>
+
+        </div>
+
+
+        <div class="problem-card">
+
+            <div class="icon">🥤</div>
+
+            <h3>
+                Любимые напитки
+            </h3>
+
+            <p>
+                В будущем пользователи смогут выбирать
+                воду, газировку и напитки партнёров.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     КАК РАБОТАЕТ
+========================= -->
+
+<section class="how" id="how">
+
+    <div class="section-title center">
+
+        <span>КАК ЭТО РАБОТАЕТ</span>
+
+        <h2>
+            Три простых шага.
+        </h2>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">01</div>
+
+            <h3>
+                Получи бутылку
+            </h3>
+
+            <p>
+                Выбери металлическую бутылку
+                REFILL+ и активируй подписку.
+            </p>
+
+        </div>
+
+
+        <div class="line"></div>
+
+
+        <div class="step">
+
+            <div class="step-number">02</div>
+
+            <h3>
+                Найди станцию
+            </h3>
+
+            <p>
+                Найди ближайшую станцию REFILL+.
+            </p>
+
+        </div>
+
+
+        <div class="line"></div>
+
+
+        <div class="step">
+
+            <div class="step-number">03</div>
+
+            <h3>
+                Наполни бутылку
+            </h3>
+
+            <p>
+                Выбери напиток, приложи бутылку
+                и наполни её.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ДИЗАЙН БУТЫЛКИ
+========================= -->
+
+<section class="bottle-design" id="bottle-design">
+
+    <div class="bottle-design-text">
+
+        <span class="design-label">
+            ДИЗАЙН REFILL+
+        </span>
+
+        <h2>
+            Бутылка, созданная
+            <span>для жизни.</span>
+        </h2>
+
+        <p>
+            Мы разработали многоразовую бутылку REFILL+
+            так, чтобы она была удобной, прочной и
+            подходила для нашей системы наполнения.
+        </p>
+
+
+        <div class="design-features">
+
+
+            <div class="design-feature">
+
+                <div class="feature-icon">
+                    🎒
+                </div>
+
+                <div>
+
+                    <h3>
+                        Удобный ремешок
+                    </h3>
+
+                    <p>
+                        Ремешок расположен сверху и позволяет
+                        удобно носить бутылку с собой.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="design-feature">
+
+                <div class="feature-icon">
+                    🥤
+                </div>
+
+                <div>
+
+                    <h3>
+                        Отверстие для напитка
+                    </h3>
+
+                    <p>
+                        Специальное отверстие используется
+                        для наполнения бутылки.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="design-feature">
+
+                <div class="feature-icon">
+                    💳
+                </div>
+
+                <div>
+
+                    <h3>
+                        Отверстие для карты
+                    </h3>
+
+                    <p>
+                        Отдельный слот для специальной
+                        карты REFILL+.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="design-feature">
+
+                <div class="feature-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <h3>
+                        Слот для AirTag
+                    </h3>
+
+                    <p>
+                        Слот расположен ниже, в нижней части
+                        бутылки, чтобы можно было отслеживать её.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <div class="bottle-design-image">
+
+        <div class="image-background"></div>
+
+        <img
+            src="refill-bottle-realistic.png"
+            alt="Реалистичный дизайн бутылки REFILL+"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     НАПИТКИ
+========================= -->
+
+<section class="drinks" id="drinks">
+
+    <div class="section-title center">
+
+        <span>ВЫБИРАЙ САМ</span>
+
+        <h2>
+            Не только вода.
+        </h2>
+
+        <p>
+            В будущем REFILL+ может объединить
+            разные бренды напитков в одной системе.
+        </p>
+
+    </div>
+
+
+    <div class="drink-grid">
+
+
+        <div class="drink-card">
+
+            <div class="drink-symbol">💧</div>
+
+            <h3>Вода</h3>
+
+            <p>
+                Чистая фильтрованная вода.
+            </p>
+
+        </div>
+
+
+        <div class="drink-card">
+
+            <div class="drink-symbol">🥤</div>
+
+            <h3>Газировка</h3>
+
+            <p>
+                Любимые газированные напитки
+                от партнёров.
+            </p>
+
+        </div>
+
+
+        <div class="drink-card">
+
+            <div class="drink-symbol">🍊</div>
+
+            <h3>Цитрусовые</h3>
+
+            <p>
+                Освежающие цитрусовые вкусы.
+            </p>
+
+        </div>
+
+
+        <div class="drink-card">
+
+            <div class="drink-symbol">🍵</div>
+
+            <h3>Горячий чай</h3>
+
+            <p>
+                Свежеприготовленный горячий чай.
+            </p>
+
+        </div>
+
+
+        <div class="drink-card">
+
+            <div class="drink-symbol">☕</div>
+
+            <h3>Горячий кофе</h3>
+
+            <p>
+                Свежеприготовленный кофе.
+            </p>
+
+        </div>
+
+
+        <div class="drink-card future">
+
+            <div class="drink-symbol">＋</div>
+
+            <h3>
+                Больше брендов
+            </h3>
+
+            <p>
+                Новые партнёры смогут
+                присоединиться к системе.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     РАЗМЕРЫ
+========================= -->
+
+<section class="bottle-sizes" id="bottle-sizes">
+
+    <div class="section-title center">
+
+        <span>REFILL+ BOTTLES</span>
+
+        <h2>
+            Выбери свой размер.
+        </h2>
+
+        <p>
+            Три варианта для разных ситуаций.
+        </p>
+
+    </div>
+
+
+    <div class="size-grid">
+
+
+        <div class="size-card">
+
+            <div class="size-bottle">
+                <div class="size-bottle-body size-300"></div>
+            </div>
+
+            <div class="size-label">
+                MINI
+            </div>
+
+            <h3>
+                300 мл
+            </h3>
+
+            <p>
+                Компактный вариант для кофе,
+                чая и коротких прогулок.
+            </p>
+
+        </div>
+
+
+        <div class="size-card featured">
+
+            <div class="size-bottle">
+                <div class="size-bottle-body size-500"></div>
+            </div>
+
+            <div class="size-label">
+                CLASSIC
+            </div>
+
+            <h3>
+                500 мл
+            </h3>
+
+            <p>
+                Универсальный вариант для учёбы,
+                работы и повседневного использования.
+            </p>
+
+        </div>
+
+
+        <div class="size-card">
+
+            <div class="size-bottle">
+                <div class="size-bottle-body size-700"></div>
+            </div>
+
+            <div class="size-label">
+                SPORT
+            </div>
+
+            <h3>
+                700 мл
+            </h3>
+
+            <p>
+                Для тренировок и активного образа жизни.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ТАРИФЫ
+========================= -->
+
+<section class="plans" id="plans">
+
+    <div class="section-title center">
+
+        <span>REFILL PLANS</span>
+
+        <h2>
+            Плати за литры,
+            а не за количество посещений.
+        </h2>
+
+        <p>
+            Если лимита недостаточно, пользователь
+            может докупить дополнительные литры.
+        </p>
+
+    </div>
+
+
+    <div class="pricing">
+
+
+        <div class="price-card">
+
+            <h3>START</h3>
+
+            <div class="price">
+                $9.99
+                <small>/ месяц</small>
+            </div>
+
+            <div class="liters">
+                💧 20 литров / месяц
+            </div>
+
+            <ul>
+                <li>✓ Многоразовая бутылка</li>
+                <li>✓ Вода</li>
+                <li>✓ Доступ к станциям</li>
+                <li>✓ Приложение REFILL+</li>
+            </ul>
+
+            <button>
+                Выбрать
+            </button>
+
+        </div>
+
+
+        <div class="price-card popular">
+
+            <div class="popular-label">
+                ПОПУЛЯРНЫЙ
+            </div>
+
+            <h3>PLUS</h3>
+
+            <div class="price">
+                $19.99
+                <small>/ месяц</small>
+            </div>
+
+            <div class="liters">
+                🥤 50 литров / месяц
+            </div>
+
+            <ul>
+                <li>✓ Всё из START</li>
+                <li>✓ Газированные напитки</li>
+                <li>✓ До 1.5 л за одно наполнение</li>
+                <li>✓ Бонусы</li>
+            </ul>
+
+            <button>
+                Начать сейчас
+            </button>
+
+        </div>
+
+
+        <div class="price-card">
+
+            <h3>ATHLETE</h3>
+
+            <div class="price">
+                $29.99
+                <small>/ месяц</small>
+            </div>
+
+            <div class="liters">
+                🏃 100 литров / месяц
+            </div>
+
+            <ul>
+                <li>✓ Всё из PLUS</li>
+                <li>✓ До 3 л за одно наполнение</li>
+                <li>✓ Спортивные напитки</li>
+                <li>✓ Для тренировок</li>
+            </ul>
+
+            <button>
+                Для спортсменов
+            </button>
+
+        </div>
+
+
+        <div class="price-card">
+
+            <h3>PREMIUM</h3>
+
+            <div class="price">
+                $49.99
+                <small>/ месяц</small>
+            </div>
+
+            <div class="liters">
+                ⭐ 180 литров / месяц
+            </div>
+
+            <ul>
+                <li>✓ Всё из ATHLETE</li>
+                <li>✓ Расширенный выбор напитков</li>
+                <li>✓ Премиальная бутылка</li>
+                <li>✓ VIP-бонусы</li>
+            </ul>
+
+            <button>
+                Выбрать
+            </button>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     КАЛЬКУЛЯТОР ЭКОНОМИИ
+========================= -->
+
+<section class="calculator" id="calculator">
+
+    <div class="section-title center">
+
+        <span>
+            REFILL+ CALCULATOR
+        </span>
+
+        <h2>
+            Сколько ты можешь сэкономить?
+        </h2>
+
+        <p>
+            Введи свои данные и посмотри,
+            сколько одноразовых бутылок можно заменить.
+        </p>
+
+    </div>
+
+
+    <div class="calculator-box">
+
+
+        <div class="calculator-input">
+
+
+            <div class="calculator-field">
+
+                <label>
+                    Бутылок в день
+                </label>
+
+                <input
+                    type="number"
+                    id="bottlesPerDay"
+                    value="2"
+                    min="1"
+                    max="50"
+                >
+
+            </div>
+
+
+            <div class="calculator-field">
+
+                <label>
+                    Цена одной бутылки ($)
+                </label>
+
+                <input
+                    type="number"
+                    id="bottlePrice"
+                    value="1"
+                    min="0.1"
+                    step="0.1"
+                >
+
+            </div>
+
+
+            <div class="calculator-field">
+
+                <label>
+                    Подписка REFILL+ ($/мес.)
+                </label>
+
+                <input
+                    type="number"
+                    id="subscriptionPrice"
+                    value="19.99"
+                    min="1"
+                    step="0.01"
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <div class="calculator-result">
+
+
+            <div class="result-card">
+
+                <span>
+                    🧴 Бутылок в месяц
+                </span>
+
+                <strong id="monthlyBottles">
+                    60
+                </strong>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <span>
+                    🧴 Бутылок в год
+                </span>
+
+                <strong id="yearlyBottles">
+                    730
+                </strong>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <span>
+                    💵 Без REFILL+
+                </span>
+
+                <strong id="withoutRefill">
+                    $730
+                </strong>
+
+                <small>
+                    в год
+                </small>
+
+            </div>
+
+
+            <div class="result-card main-result">
+
+                <span>
+                    💚 Экономия
+                </span>
+
+                <strong id="yearlySavings">
+                    $490.12
+                </strong>
+
+                <small>
+                    в год
+                </small>
+
+            </div>
+
+
+        </div>
+
+
+        <div
+            class="calculator-message"
+            id="calculatorMessage"
+        >
+            ♻️ Ты можешь заменить сотни одноразовых бутылок
+            одной многоразовой бутылкой REFILL+.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     БАЛАНС
+========================= -->
+
+<section class="balance">
+
+    <div class="section-title center">
+
+        <span>
+            YOUR REFILL BALANCE
+        </span>
+
+        <h2>
+            Ты всегда знаешь,
+            сколько осталось.
+        </h2>
+
+        <p>
+            В приложении пользователь видит
+            текущий баланс литров.
+        </p>
+
+    </div>
+
+
+    <div class="balance-box">
+
+
+        <div class="balance-top">
+
+            <h3>
+                PLUS Plan
+            </h3>
+
+            <span>
+                Следующее обновление: через 18 дней
+            </span>
+
+        </div>
+
+
+        <div class="balance-number">
+
+            <strong>
+                42
+            </strong>
+
+            <span>
+                / 50 L
+            </span>
+
+        </div>
+
+
+        <div class="progress">
+
+            <div class="progress-bar"></div>
+
+        </div>
+
+
+        <div class="balance-info">
+
+            <span>
+                Использовано: 42 L
+            </span>
+
+            <span>
+                Осталось: 8 L
+            </span>
+
+        </div>
+
+
+        <div class="extra-liters">
+
+            <div>
+
+                <strong>
+                    Закончились литры?
+                </strong>
+
+                <br>
+
+                Добавь ещё 10 L к своей подписке.
+
+            </div>
+
+            <button class="extra-button">
+                +10 L · $5
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ТОЧКИ В ТАШКЕНТЕ
+========================= -->
+
+<section class="locations" id="locations">
+
+    <div class="section-title center">
+
+        <span>
+            REFILL+ LOCATIONS
+        </span>
+
+        <h2>
+            Найди ближайшую точку.
+        </h2>
+
+        <p>
+            В будущем станции REFILL+ могут находиться
+            в торговых центрах, парках, университетах
+            и других популярных местах Ташкента.
+        </p>
+
+    </div>
+
+
+    <div class="locations-container">
+
+
+        <div class="location-list">
+
+
+            <div class="location-card active">
+
+                <div class="location-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <h3>
+                        REFILL+ City Center
+                    </h3>
+
+                    <p>
+                        Центр Ташкента
+                    </p>
+
+                    <span>
+                        Демонстрационная точка
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="location-card">
+
+                <div class="location-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <h3>
+                        REFILL+ Tashkent City
+                    </h3>
+
+                    <p>
+                        Tashkent City
+                    </p>
+
+                    <span>
+                        Планируемая точка
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="location-card">
+
+                <div class="location-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <h3>
+                        REFILL+ Magic City
+                    </h3>
+
+                    <p>
+                        Magic City
+                    </p>
+
+                    <span>
+                        Планируемая точка
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="location-card">
+
+                <div class="location-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <h3>
+                        REFILL+ Eco Park
+                    </h3>
+
+                    <p>
+                        Парк • Ташкент
+                    </p>
+
+                    <span>
+                        Планируемая точка
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="map">
+
+            <div class="map-background">
+
+                <div class="map-road road-1"></div>
+                <div class="map-road road-2"></div>
+                <div class="map-road road-3"></div>
+
+                <div class="map-water"></div>
+
+
+                <div class="map-pin pin-1">
+                    <span>+</span>
+                </div>
+
+                <div class="map-pin pin-2">
+                    <span>+</span>
+                </div>
+
+                <div class="map-pin pin-3">
+                    <span>+</span>
+                </div>
+
+                <div class="map-pin pin-4">
+                    <span>+</span>
+                </div>
+
+
+                <div class="map-label label-1">
+                    City Center
+                </div>
+
+                <div class="map-label label-2">
+                    Tashkent City
+                </div>
+
+                <div class="map-label label-3">
+                    Magic City
+                </div>
+
+                <div class="map-label label-4">
+                    Eco Park
+                </div>
+
+            </div>
+
+
+            <div class="map-top">
+
+                <strong>
+                    Ташкент
+                </strong>
+
+                <span>
+                    4 точки REFILL+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="cta">
+
+    <span>
+        THE FUTURE OF DRINKING
+    </span>
+
+    <h2>
+        Одна бутылка.
+        Тысячи наполнений.
+    </h2>
+
+    <p>
+        Пей. Наполняй. Используй снова.
+    </p>
+
+    <a href="#plans" class="cta-button">
+        Стать участником →
+    </a>
+
+</section>
+
+
+<!-- =========================
+     КОНТАКТЫ
+========================= -->
+
+<section class="contact" id="contact">
+
+    <div class="section-title center">
+
+        <span>
+            CONTACT
+        </span>
+
+        <h2>
+            Давай создавать будущее вместе.
+        </h2>
+
+        <p>
+            Есть идея, предложение о сотрудничестве
+            или хочешь стать партнёром REFILL+?
+        </p>
+
+    </div>
+
+
+    <div class="contact-container">
+
+
+        <div class="contact-info">
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    📧
+                </div>
+
+                <div>
+
+                    <h3>
+                        Email
+                    </h3>
+
+                    <p>
+                        hello@refill-plus.com
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    📱
+                </div>
+
+                <div>
+
+                    <h3>
+                        Телефон
+                    </h3>
+
+                    <p>
+                        +1 (555) 123-4567
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <h3>
+                        Адрес
+                    </h3>
+
+                    <p>
+                        Ташкент, Узбекистан
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    🌎
+                </div>
+
+                <div>
+
+                    <h3>
+                        Социальные сети
+                    </h3>
+
+                    <p>
+                        @refillplus
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <form
+            class="contact-form"
+            onsubmit="sendMessage(event)"
+        >
+
+            <input
+                type="text"
+                placeholder="Ваше имя"
+                required
+            >
+
+            <input
+                type="email"
+                placeholder="Ваш Email"
+                required
+            >
+
+            <input
+                type="text"
+                placeholder="Тема сообщения"
+                required
+            >
+
+            <textarea
+                rows="6"
+                placeholder="Ваше сообщение"
+                required
+            ></textarea>
+
+            <button type="submit">
+                Отправить сообщение →
+            </button>
+
+        </form>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="logo">
+        REFILL<span>+</span>
+    </div>
+
+    <p>
+        Drink. Refill. Repeat. ♻️
+    </p>
+
+    <p>
+        © 2026 REFILL+
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   КАЛЬКУЛЯТОР
+========================= */
+
+function calculateSavings() {
+
+    const bottlesPerDay =
+        Number(
+            document.getElementById("bottlesPerDay").value
+        ) || 0;
+
+    const bottlePrice =
+        Number(
+            document.getElementById("bottlePrice").value
+        ) || 0;
+
+    const subscriptionPrice =
+        Number(
+            document.getElementById("subscriptionPrice").value
+        ) || 0;
+
+
+    const monthlyBottles =
+        bottlesPerDay * 30;
+
+    const yearlyBottles =
+        bottlesPerDay * 365;
+
+
+    const yearlyWithoutRefill =
+        yearlyBottles * bottlePrice;
+
+
+    const yearlySubscription =
+        subscriptionPrice * 12;
+
+
+    const yearlySavings =
+        yearlyWithoutRefill - yearlySubscription;
+
+
+    document.getElementById("monthlyBottles").textContent =
+        monthlyBottles;
+
+    document.getElementById("yearlyBottles").textContent =
+        yearlyBottles;
+
+    document.getElementById("withoutRefill").textContent =
+        "$" + yearlyWithoutRefill.toFixed(2);
+
+    document.getElementById("yearlySavings").textContent =
+        "$" + Math.max(yearlySavings, 0).toFixed(2);
+
+
+    const message =
+        document.getElementById("calculatorMessage");
+
+
+    if (yearlySavings > 0) {
+
+        message.innerHTML =
+            "♻️ За год ты можешь заменить примерно " +
+            yearlyBottles +
+            " одноразовых бутылок и сэкономить $" +
+            yearlySavings.toFixed(2) +
+            ".";
+
+    } else {
+
+        message.innerHTML =
+            "🌱 Даже если экономия небольшая, REFILL+ помогает " +
+            "сократить количество одноразовых бутылок.";
+
+    }
+
+}
+
+
+document
+    .getElementById("bottlesPerDay")
+    .addEventListener("input", calculateSavings);
+
+document
+    .getElementById("bottlePrice")
+    .addEventListener("input", calculateSavings);
+
+document
+    .getElementById("subscriptionPrice")
+    .addEventListener("input", calculateSavings);
+
+calculateSavings();
+
+
+/* =========================
+   КОНТАКТНАЯ ФОРМА
+========================= */
+
+function sendMessage(event) {
+
+    event.preventDefault();
+
+    alert(
+        "Спасибо! Сообщение отправлено команде REFILL+."
+    );
+
+}
+
+
+/* =========================
+   ТОЧКИ
+========================= */
+
+const locations =
+    document.querySelectorAll(".location-card");
+
+locations.forEach(function(card) {
+
+    card.addEventListener("click", function() {
+
+        locations.forEach(function(item) {
+            item.classList.remove("active");
+        });
+
+        card.classList.add("active");
+
+    });
+
+});
+
+
+</script>
+
+
+</body>
+</html>
